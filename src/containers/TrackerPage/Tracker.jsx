@@ -10,6 +10,9 @@ import { TrackerContentItem } from '../../components/TrackerContentItem/index';
 import { BottomRightSnackBar } from '../../components/SnackBar/index';
 import { BackDropBlock } from '../../components/BackDrop/index';
 
+import { KeyRecovery, KeyDeaths, KeyActiveCases, KeyConfirmed } from '../../constants/Keys';
+import { LabelTotalConfirmed, LabelTotalRecovered, LabelTotalDeaths, LabelActiveCases } from '../../constants/String';
+import { FormatDateFromString } from '../../utils/Date';
 
 class Tracker extends BaseComponent {
 
@@ -18,7 +21,10 @@ class Tracker extends BaseComponent {
 
         this.state = {
             countryKey: 'Philippines',
+
             rawResult: null,
+            list: [],
+            recordDate: '',
 
             isPageLoading: false,
 
@@ -49,9 +55,39 @@ class Tracker extends BaseComponent {
     }
 
     buildTrackerData = (result) =>{
+        let list = [];
+        list.push({
+            key: KeyConfirmed,
+            label: LabelTotalConfirmed,
+            value: (result.total_cases != null) ? result.total_cases : "",
+            extra: {
+                value: result.new_cases
+            }
+        })
+        list.push({
+            key: KeyRecovery,
+            label: LabelTotalRecovered,
+            value: (result.total_recovered != null) ? result.total_recovered : "",
+        })
+        list.push({
+            key: KeyDeaths,
+            label: LabelTotalDeaths,
+            value: (result.total_deaths != null) ? result.total_deaths : "0",
+            extra: {
+                value: result.new_deaths
+            }
+        })
+        list.push({
+            key: KeyActiveCases,
+            label: LabelActiveCases,
+            value: (result.active_cases != null) ? result.active_cases : "",
+        })
+
         this.setState({
             ...this.state,
-            rawResult: result
+            rawResult: result,
+            list: list,
+            recordDate: FormatDateFromString(result.record_date_pure)
         })
         this.setPageLoading(false);
     }
@@ -63,6 +99,7 @@ class Tracker extends BaseComponent {
             snackBarMessage: error.toString(),
             snackBarType: "error"
         })
+        this.setPageLoading(false);
     }
 
     hideErrorSnackBar = () =>{
@@ -76,11 +113,13 @@ class Tracker extends BaseComponent {
         return(
             <React.Fragment>
                 <BackDropBlock status={this.state.isPageLoading} />
-                
                 <Container maxWidth="xl">
                     <Grid container spacing={1}>
                         <Grid container item xs={12} spacing={3}>
-                            <TrackerContentItem text={this.state.countryKey} />
+                            <TrackerContentItem 
+                                list={this.state.list} 
+                                recordDate={this.state.recordDate}
+                                />
                         </Grid>
                     </Grid>
                 </Container>

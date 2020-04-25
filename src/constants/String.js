@@ -13,3 +13,12 @@ export const DataRapidApiLink = 'https://rapidapi.com/astsiatsko/api/coronavirus
 export const DataHerokuLink = 'https://coronavirus-ph-api.herokuapp.com/';
 
 export const DebugText = ' - Debug';
+
+export const SomethingWrong = 'Something went wrong. Please try again...';
+
+export const LabelTotalConfirmed = "Total Confirmed";
+export const LabelTotalRecovered = "Total Recovered";
+export const LabelTotalDeaths = "Total Deaths";
+export const LabelActiveCases = "Active Cases";
+
+export const LabelNew = "New";

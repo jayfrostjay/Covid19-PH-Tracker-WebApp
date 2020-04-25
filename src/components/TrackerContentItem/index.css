@@ -1,0 +1,13 @@
+@media screen and (max-width:1400px){
+    .trackerItem {
+        flex-basis: 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media screen and (max-width:900px){
+    .trackerItem {
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+    }
+}

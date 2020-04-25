@@ -14,7 +14,7 @@ const useStyle = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        height: '80vh',
+        height: '85vh',
         alignItems: 'center'
     },
     aboutinnercontainer: {
@@ -47,11 +47,11 @@ const AboutContainer = () => {
                     <a className={classes.textLink} href={RepositoryLink} target="_blank" rel="noopener noreferrer">
                         <Avatar className={classes.avatar} src={NeroBird} />
                     </a>
-                    <p>
+                    <h1>
                         <b>
                             <a className={classes.textLink} href={RepositoryLink} target="_blank" rel="noopener noreferrer">{AppName}</a>
                         </b>
-                    </p>
+                    </h1>
                     <p>{DevelopedIn} <b><a className={classes.textLink} href={ReactJsLink} target="_blank" rel="noopener noreferrer">{ReactJS}</a></b></p>
                 </div>
                 

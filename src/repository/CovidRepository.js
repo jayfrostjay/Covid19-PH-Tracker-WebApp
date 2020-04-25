@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SomethingWrong } from '../constants/String';
 
 const BASE_URL = 'https://covid19-ph-tracker-server.herokuapp.com/';
 const COVID_API = 'api/covid/';
@@ -11,12 +12,20 @@ const COVID_API_WORLD_STATS = 'world_stats';
 const COVID_API_COUNTRY_HISTORY = 'country_history/';
 const COVID_API_PH_LIST = 'ph_patient_list';
 
+const REQUEST_SUCCESS = 200;
+
 function axiosCallWrapper(url, callback, errorCallback){
     axios
         .get(url)
         .then((res) => {
-            if( callback != null ){
-                callback(res);
+            if(res.status === REQUEST_SUCCESS){
+                if( callback != null ){
+                    callback(res.data);
+                }
+            }else{
+                if( errorCallback != null ){
+                    errorCallback(SomethingWrong);
+                }
             }
         })
         .catch(error => {
