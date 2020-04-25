@@ -44,27 +44,27 @@ const AboutContainer = () => {
         <Container maxWidth="sm" className={classes.aboutcontainer}>
             <div className={classes.aboutinnercontainer}>
                 <div>
-                    <a className={classes.textLink} href={RepositoryLink} target="_blank">
+                    <a className={classes.textLink} href={RepositoryLink} target="_blank" rel="noopener noreferrer">
                         <Avatar className={classes.avatar} src={NeroBird} />
                     </a>
                     <p>
                         <b>
-                            <a className={classes.textLink} href={RepositoryLink} target="_blank">{AppName}</a>
+                            <a className={classes.textLink} href={RepositoryLink} target="_blank" rel="noopener noreferrer">{AppName}</a>
                         </b>
                     </p>
-                    <p>{DevelopedIn} <b><a className={classes.textLink} href={ReactJsLink} target="_blank">{ReactJS}</a></b></p>
+                    <p>{DevelopedIn} <b><a className={classes.textLink} href={ReactJsLink} target="_blank" rel="noopener noreferrer">{ReactJS}</a></b></p>
                 </div>
                 
                 <div className={classes.detailMarginTop}>
                     <p>{DataSources}</p>
                     <p>
                         <b>
-                            <a className={classes.textLink} href={DataRapidApiLink} target="_blank">{DataSourceRapidApi}</a>
+                            <a className={classes.textLink} href={DataRapidApiLink} target="_blank" rel="noopener noreferrer">{DataSourceRapidApi}</a>
                         </b>
                     </p>
                     <p>
                         <b>
-                            <a className={classes.textLink} href={DataHerokuLink} target="_blank">{DataSourceHeroku}</a>
+                            <a className={classes.textLink} href={DataHerokuLink} target="_blank" rel="noopener noreferrer">{DataSourceHeroku}</a>
                         </b>
                     </p>
                 </div>
