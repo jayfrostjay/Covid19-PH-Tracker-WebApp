@@ -38,7 +38,7 @@ const useStyle = makeStyles((theme) => ({
 
 const AboutContainer = () => {
     const classes = useStyle();
-    const appendText = (process.env.REACT_APP_IS_DEBUG) ? DebugText : "";
+    const appendText = (process.env.REACT_APP_IS_DEBUG === "true") ? DebugText : ""; 
 
     return(
         <Container maxWidth="sm" className={classes.aboutcontainer}>
