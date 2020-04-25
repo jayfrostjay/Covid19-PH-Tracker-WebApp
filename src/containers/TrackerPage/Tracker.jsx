@@ -113,7 +113,7 @@ class Tracker extends BaseComponent {
         return(
             <React.Fragment>
                 <BackDropBlock status={this.state.isPageLoading} />
-                <Container maxWidth="xl">
+                <Container maxWidth="xl" style={{padding: 0}}>
                     <Grid container spacing={1}>
                         <Grid container item xs={12} spacing={3}>
                             <TrackerContentItem 

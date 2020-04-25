@@ -72,7 +72,7 @@ const IconDetail = (key, classes) => {
     switch(key){
         case KeyRecovery:
             color = green[500];
-            icon = <FontAwesomeIcon icon="viruses" className={classes.contentIcon}/>;
+            icon = <FontAwesomeIcon icon="user-shield" className={classes.contentIcon}/>;
             break;
         case KeyDeaths:
             color = red[500];
@@ -143,9 +143,7 @@ export const TrackerContentItem = (props) => {
 
     return (
         <React.Fragment>
-            {
-                list.map((value, index) => (<GridItemContent  label={value.label} content={value.value} color={value.color} icon={value.icon} extra={value.extra} recordDate={recordDate}/>))
-            }
+            {list.map((value, index) => (<GridItemContent  label={value.label} content={value.value} color={value.color} icon={value.icon} extra={value.extra} recordDate={recordDate}/>))}
         </React.Fragment>
     );
 }
