@@ -6,6 +6,6 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
-export const TrackerInfoList = (props) => {
+export const TrackerListBox = (props) => {
 
 }

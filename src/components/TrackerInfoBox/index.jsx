@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import {red, lightBlue, orange, green, blueGrey} from '@material-ui/core/colors/';
-import { KeyRecovery, KeyDeaths, KeyActiveCases, KeyConfirmed } from '../../constants/Keys';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {red, lightBlue, orange, green, blueGrey} from '@material-ui/core/colors/';
+import AnimatedNumber from 'animated-number-react';
+
+import { KeyRecovery, KeyDeaths, KeyActiveCases, KeyConfirmed } from '../../constants/Keys';
 import { LabelNew } from '../../constants/String';
+import { IsUndefined } from '../../utils/Type';
+import { StringIsEmpty, StringToInt } from '../../utils/String';
 import './index.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.spacing(2)
     },
     marginLeft: {
-        marginLeft: theme.spacing(1)
+        marginLeft: theme.spacing(1),
+        fontSize: '13px'
     },
     label: {
         fontSize: theme.spacing(2)
@@ -59,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
         color: blueGrey[50]
     },
     extraContent: {
-        float: 'right'
+        float: 'right',
+        fontSize: '13px'
     },
     flexOne: {
         flex: 1
@@ -98,33 +104,50 @@ const IconDetail = (key, classes) => {
     }
 }
 
-const GridItemContent = ({label, color, content, icon, extra, recordDate, span}) => {
+const animatedValueFormat = (value) => value.toFixed(0).replace(/(\d)(?=(\d{3})+\b)/g,'$1,');
+
+export const GridItemContent = ({label, color, content, icon, extra, recordDate, span}) => {
     const classes = useStyles();
+    const countValue = StringToInt(content);
+
     let extraContent = "";
-    if( extra != null ){
-        extraContent += "+" + extra.value + " " + LabelNew;
+    let hasExtra = false;
+    let appendExtra = "", prependExtra = ""
+    if( !(IsUndefined(extra)) ){
+        if( !(IsUndefined(extra.value)) && !(StringIsEmpty(extra.value)) ){
+            extraContent += StringToInt(extra.value);
+            hasExtra = true;
+            appendExtra = extra.label
+            prependExtra = extra.prepend
+        }
     }
 
     return (
-        <Grid item xs={span} className="trackerItem">
-            <Paper className={classes.paper}>
-                <Paper elevation={3} className={classes.paperIconHolder} style={{backgroundColor: color}}>
-                    {icon}
-                </Paper>
-                <span className={classes.label}>{label}</span>
-                <h3 className={classes.content}>{content}</h3>
-                <Divider className={classes.dividermargin} />
-                <div className={classes.subContent}>
-                    <div className={classes.flexOne}>
-                        <FontAwesomeIcon icon="history" />
-                        <span className={classes.marginLeft}>Date Updated: {recordDate}</span>
+        <React.Fragment>
+            <Grid item xs={span} className="trackerItem">
+                <Paper elevation={2} className={classes.paper}>
+                    <Paper elevation={5} className={classes.paperIconHolder} style={{backgroundColor: color}}>
+                        {icon}
+                    </Paper>
+                    <span className={classes.label}>{label}</span>
+                    <h3 className={classes.content}>
+                        <AnimatedNumber value={countValue} formatValue={animatedValueFormat} duration="1500"/>
+                    </h3>
+                    <Divider className={classes.dividermargin} />
+                    <div className={classes.subContent}>
+                        <div className={classes.flexOne}>
+                            <FontAwesomeIcon icon="history" />
+                            <span className={classes.marginLeft}>{recordDate}</span>
+                        </div>
+                        <span className={classes.extraContent}>
+                            {
+                                (hasExtra) ? <b>{prependExtra}<AnimatedNumber value={extraContent} formatValue={animatedValueFormat} duration="1500"/> {appendExtra}</b> : ""
+                            }
+                        </span>
                     </div>
-                    <span className={classes.extraContent}>
-                        <b>{extraContent}</b>
-                    </span>
-                </div>
-            </Paper>
-        </Grid>
+                </Paper>
+            </Grid>
+        </React.Fragment>
     )
 }
 

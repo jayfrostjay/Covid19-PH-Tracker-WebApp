@@ -3,8 +3,8 @@ export const FormatDateFromString = (data) => {
     return FormatDayKeyToDayName(holder.getDay()) + " " + holder.getDate() + " " + FormatMonthKeyToMonthName(holder.getMonth()) + ", " + holder.getFullYear(); 
 }
 
-export const FormatDayKeyToDayName = (key) => {
-    const dayName = [
+export const FormatDayKeyToDayName = (key, type = 'full') => {
+    const dayNameMini = [
         "Sun",
         "Mon",
         "Tue",
@@ -13,10 +13,26 @@ export const FormatDayKeyToDayName = (key) => {
         "Fri",
         "Say"
     ];
-    return dayName[key];
+
+    const dayName = [
+        "Sunday",
+        "Monday",
+        "Tueday",
+        "Wedday",
+        "Thuday",
+        "Friday",
+        "Sayday"
+    ];
+
+    switch(type){
+        case 'mini':
+            return dayNameMini[key];
+        default:
+            return dayName[key];
+    }
 } 
 
-export const FormatMonthKeyToMonthName = (key) => {
+export const FormatMonthKeyToMonthName = (key, type = 'full') => {
     const monthNames = [
         "January", 
         "February", 
@@ -31,5 +47,31 @@ export const FormatMonthKeyToMonthName = (key) => {
         "November", 
         "December"
     ];
-    return monthNames[key];
+
+    const monthNamesMini = [
+        "Jan", 
+        "Feb", 
+        "Mar", 
+        "Apr", 
+        "May", 
+        "Jun",
+        "Jul", 
+        "Aug", 
+        "Sep", 
+        "Oct", 
+        "Nov", 
+        "Dec"
+    ];
+
+    switch(type){
+        case 'mini':
+            return monthNamesMini[key];
+        default:
+            return monthNames[key];
+    }
 } 
+
+export const FormatToMiniDate = (data) => {
+    let holder = new Date(data.toString());
+    return FormatMonthKeyToMonthName(holder.getMonth(), 'mini') + " " + holder.getDate();
+}

@@ -1,0 +1,29 @@
+.tracker-graphBox {
+    display: "block";
+}
+
+.tracker-graphBox .ct-line, 
+.tracker-graphBox .ct-point, 
+.tracker-graphBox .ct-series-a,
+.tracker-graphBox .ct-bar,
+.tracker-graphBox .ct-label{
+    stroke: hsla(0,0%,100%,.8);
+    color: hsla(0,0%,100%,.7);
+}
+
+.tracker-graphBox .ct-grid{
+    stroke: hsla(0,0%,100%,.2);
+}
+
+.tracker-graphBox .ct-grid {
+    stroke: "white";
+}
+
+@media screen and (max-width:1200px){
+    .trackerBox {
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}

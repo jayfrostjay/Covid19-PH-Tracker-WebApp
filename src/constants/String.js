@@ -22,3 +22,6 @@ export const LabelTotalDeaths = "Total Deaths";
 export const LabelActiveCases = "Active Cases";
 
 export const LabelNew = "New";
+export const LabelNewCases = "New Cases";
+export const LabelNewDeaths = "New Deaths";
+export const LabelTest = "Covid19 Test";

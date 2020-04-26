@@ -15,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
 export const BackDropBlock = (props) => {
     const backDropOpen = props.status;
     const classes = useStyles();
+    const backDropClassname = (props.bdclass != null) ? props.bdclass : classes.backdrop;
     return (
-        <Backdrop className={classes.backdrop} open={backDropOpen} >
+        <Backdrop className={backDropClassname} open={backDropOpen} >
             <CircularProgress color="inherit" />
         </Backdrop>
     )
