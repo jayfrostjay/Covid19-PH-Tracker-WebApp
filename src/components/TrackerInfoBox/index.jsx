@@ -98,7 +98,7 @@ const IconDetail = (key, classes) => {
     }
 }
 
-const GridItemContent = ({label, color, content, icon, extra, recordDate}) => {
+const GridItemContent = ({label, color, content, icon, extra, recordDate, span}) => {
     const classes = useStyles();
     let extraContent = "";
     if( extra != null ){
@@ -106,7 +106,7 @@ const GridItemContent = ({label, color, content, icon, extra, recordDate}) => {
     }
 
     return (
-        <Grid item xs={3} className="trackerItem">
+        <Grid item xs={span} className="trackerItem">
             <Paper className={classes.paper}>
                 <Paper elevation={3} className={classes.paperIconHolder} style={{backgroundColor: color}}>
                     {icon}
@@ -128,10 +128,11 @@ const GridItemContent = ({label, color, content, icon, extra, recordDate}) => {
     )
 }
 
-export const TrackerContentItem = (props) => {
+export const TrackerInfoBox = (props) => {
     const classes = useStyles();
     const list = props.list;
     const recordDate = props.recordDate;
+    const span = ( props.span != null ) ? props.span : 4;
 
     let styleDetail = IconDetail("", classes);
 
@@ -143,12 +144,12 @@ export const TrackerContentItem = (props) => {
 
     return (
         <React.Fragment>
-            {list.map((value, index) => (<GridItemContent  label={value.label} content={value.value} color={value.color} icon={value.icon} extra={value.extra} recordDate={recordDate}/>))}
+            {list.map((value, index) => (<GridItemContent span={span} label={value.label} content={value.value} color={value.color} icon={value.icon} extra={value.extra} recordDate={recordDate}/>))}
         </React.Fragment>
     );
 }
 
-TrackerContentItem.propTypes = {
+TrackerInfoBox.propTypes = {
     styles: PropTypes.any.isRequired,
     text: PropTypes.string,
     list: PropTypes.array

@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import BaseComponent from '../common/BaseComponent.ts';
 import { getLatestStatisticsByCountry } from '../../repository/CovidRepository';
 
-import { TrackerContentItem } from '../../components/TrackerContentItem/index';
+import { TrackerInfoBox } from '../../components/TrackerInfoBox/index';
 import { BottomRightSnackBar } from '../../components/SnackBar/index';
 import { BackDropBlock } from '../../components/BackDrop/index';
 
@@ -22,7 +22,6 @@ class Tracker extends BaseComponent {
         this.state = {
             countryKey: 'Philippines',
 
-            rawResult: null,
             list: [],
             recordDate: '',
 
@@ -85,7 +84,6 @@ class Tracker extends BaseComponent {
 
         this.setState({
             ...this.state,
-            rawResult: result,
             list: list,
             recordDate: FormatDateFromString(result.record_date_pure)
         })
@@ -116,10 +114,25 @@ class Tracker extends BaseComponent {
                 <Container maxWidth="xl" style={{padding: 0}}>
                     <Grid container spacing={1}>
                         <Grid container item xs={12} spacing={3}>
-                            <TrackerContentItem 
+                            <TrackerInfoBox 
+                                span="3"
                                 list={this.state.list} 
                                 recordDate={this.state.recordDate}
                                 />
+                        </Grid>
+                    </Grid>
+                </Container>
+                <Container maxWidth="xl" style={{padding: 0}}>
+                    <Grid container spacing={1}>
+                        <Grid container item xs={12} spacing={3}>
+                            <React.Fragment>
+                                <Grid item xs={6}>
+                                    asdasd
+                                </Grid>
+                                <Grid item xs={6}>
+                                    asdasd
+                                </Grid>
+                            </React.Fragment>
                         </Grid>
                     </Grid>
                 </Container>
