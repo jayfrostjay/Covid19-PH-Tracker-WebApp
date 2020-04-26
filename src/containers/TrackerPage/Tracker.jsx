@@ -13,7 +13,7 @@ import { TrackerGraphBox } from '../../components/TrackerGraphBox/index';
 
 import { KeyRecovery, KeyDeaths, KeyActiveCases, KeyConfirmed } from '../../constants/Keys';
 import { LabelTotalConfirmed, LabelTotalRecovered, LabelTotalDeaths, LabelActiveCases,
-         LabelNewCases, LabelNewDeaths, LabelNew, LabelTest } from '../../constants/String';
+         LabelNewCases, LabelNewDeaths, LabelNew, LabelTest, LabelCases, LabelDeaths, LabelRecoveries } from '../../constants/String';
 import { FormatDateFromString, FormatToMiniDate } from '../../utils/Date';
 import { IsUndefined } from '../../utils/Type';
 import { StringToInt } from '../../utils/String';
@@ -248,7 +248,7 @@ class Tracker extends BaseComponent {
                                 data={this.state.graphData.newCases}
                                 loader={this.state.graphLoader.newCases}
                                 recordDate={this.state.recordDate}
-                                extra="Cases"
+                                extra={LabelCases}
                                 extraContent={this.state.graphData.extraCases}/> 
                             <TrackerGraphBox type="Bar" 
                                 dataKey={KeyDeaths} 
@@ -257,7 +257,7 @@ class Tracker extends BaseComponent {
                                 data={this.state.graphData.newDeaths}
                                 loader={this.state.graphLoader.newDeaths}
                                 recordDate={this.state.recordDate}
-                                extra="Deaths"
+                                extra={LabelDeaths}
                                 extraContent={this.state.graphData.extraDeaths}/>
                             <TrackerGraphBox type="Line" 
                                 dataKey={KeyRecovery} 
@@ -266,7 +266,7 @@ class Tracker extends BaseComponent {
                                 data={this.state.graphData.recovery}
                                 loader={this.state.graphLoader.recovery}
                                 recordDate={this.state.recordDate}
-                                extra="Recoveries"
+                                extra={LabelRecoveries}
                                 extraContent={this.state.graphData.extraRecoveries}/>
                         </Grid>
                     </Grid>
